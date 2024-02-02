@@ -8,15 +8,15 @@ export default function Home() {
   const [deals, setDeals] = useState([]);
 
   useEffect(() => {
-    // fetch("https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=15")
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log(data); // handle the fetched data here
-    //     setDeals(data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error fetching data:", error);
-    //   });
+    fetch("https://www.cheapshark.com/api/1.0/deals?storeID=1&upperPrice=15")
+      .then((response) => response.json())
+      .then((data) => {
+       console.log(data); // handle the fetched data here
+        setDeals(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
   }, []);
 
   return (
