@@ -47,6 +47,18 @@ const Navbar = () => {
             </li>
             <li>
               <Link
+                href="/store"
+                className={`ml-10 uppercase hover:text-blue-700 dark:hover:text-blue-500 ${
+                  router === "/store"
+                    ? "text-blue-700 dark:text-blue-500"
+                    : "dark:text-white"
+                }`}
+              >
+                Store
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/about"
                 className={`ml-10 uppercase hover:text-blue-700 dark:hover:text-blue-500 ${
                   router === "/about"
@@ -55,18 +67,6 @@ const Navbar = () => {
                 }`}
               >
                 About
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/services"
-                className={`ml-10 uppercase hover:text-blue-700 dark:hover:text-blue-500 ${
-                  router === "/services"
-                    ? "text-blue-700 dark:text-blue-500"
-                    : "dark:text-white"
-                }`}
-              >
-                Services
               </Link>
             </li>
           </ul>
@@ -107,8 +107,8 @@ const Navbar = () => {
         } items-center justify-between w-full md:hidden`}
         id="navbar-search"
       >
-        <div className="relative mt-3 md:hidden">
-          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+        <div className="relative mt-3 md:hidden mx-4">
+          <div className="absolute inset-y-0 start-0 flex items-center ps-3 cursor-pointer">
             <svg
               className="w-4 h-4 text-gray-500 dark:text-gray-400"
               aria-hidden="true"
@@ -136,10 +136,10 @@ const Navbar = () => {
           <li>
             <Link
               href="/"
-              className={`block py-2 px-3  rounded hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700 ${
+              className={`block py-2 px-3  rounde rounded-md ${
                 router === "/"
                   ? "text-white dark:text-white bg-blue-700"
-                  : "text-gray-900 dark:text-white"
+                  : "text-gray-900 dark:text-white  dark:border-gray-700"
               }`}
             >
               Home
@@ -147,26 +147,26 @@ const Navbar = () => {
           </li>
           <li>
             <Link
-              href="/about"
-              className={`block py-2 px-3  rounded hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700 ${
-                router === "/about"
+              href="/store"
+              className={`block py-2 px-3  rounde rounded-md ${
+                router === "/store"
                   ? "text-white dark:text-white bg-blue-700"
-                  : "text-gray-900 dark:text-white"
+                  : "text-gray-900 dark:text-white  dark:border-gray-700"
               }`}
             >
-              About
+              Store
             </Link>
           </li>
           <li>
             <Link
-              href="/services"
-              className={`block py-2 px-3  rounded hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700 ${
-                router === "/services"
+              href="/about"
+              className={`block py-2 px-3  rounde rounded-md ${
+                router === "/about"
                   ? "text-white dark:text-white bg-blue-700"
-                  : "text-gray-900 dark:text-white"
+                  : "text-gray-900 dark:text-white  dark:border-gray-700"
               }`}
             >
-              Services
+              About
             </Link>
           </li>
         </ul>
