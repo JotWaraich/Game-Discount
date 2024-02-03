@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Card from "@/app/Components/SearchGame";
 
-const page = ({ params }) => {
+const Page = ({ params }) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     fetch(
@@ -38,4 +38,4 @@ const page = ({ params }) => {
   );
 };
 
-export default page;
+export default Page;

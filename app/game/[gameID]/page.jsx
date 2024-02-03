@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Card from "../../Components/DetailsCard";
 
-const page = ({ params }) => {
+const Page = ({ params }) => {
   const [deals, setDeals] = useState([]);
   const [store, setStore] = useState([]);
 
@@ -65,4 +65,4 @@ const page = ({ params }) => {
   );
 };
 
-export default page;
+export default Page;

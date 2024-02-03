@@ -34,7 +34,7 @@ export default function Home() {
     <div className="bg-black">
       <div className="flex justify-center items-center flex-wrap gap-4 my-7 lg:mx-20">
         {deals.map((deal, index) => (
-          <div>
+          <div key={index}>
             {store.map((store) => {
               if (store.storeID === deal.storeID) {
                 storen = store.storeName;
