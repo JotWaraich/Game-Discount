@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import Card from "./Components/GameCard";
+import Card from "../../components/DetailsCard";
 
-export default function Home() {
+const Page = ({ params }) => {
   const [deals, setDeals] = useState([]);
 
   useEffect(() => {
-    fetch("https://www.cheapshark.com/api/1.0/deals")
+    console.log(params.gameID);
+    fetch(`https://www.cheapshark.com/api/1.0/games?id=${params.gameID}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data); // handle the fetched data here
@@ -21,8 +21,16 @@ export default function Home() {
 
   return (
     <div className="bg-black">
+      <div className=" w-full justify-center flex flex-col items-center">
+        <img
+          src={`${deals.info.thumb}`}
+          alt="game banner"
+          className="h-80 w-full px-10"
+        />
+        <h1 className="text-5xl">{deals.info.title}</h1>
+      </div>
       <div className="flex justify-center items-center flex-wrap gap-4 my-7 lg:mx-20">
-        {deals.map((deal, index) => (
+        {deals.deals.map((deal, index) => (
           <Card
             className=""
             key={index}
@@ -37,4 +45,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default Page;

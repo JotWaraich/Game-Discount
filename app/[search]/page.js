@@ -1,40 +1,42 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import Card from "./Components/GameCard";
+import React, { useEffect, useState } from "react";
+import Card from "@/app/Components/SearchGame";
 
-export default function Home() {
-  const [deals, setDeals] = useState([]);
-
+const page = ({ params }) => {
+  const [data, setData] = useState([]);
   useEffect(() => {
-    fetch("https://www.cheapshark.com/api/1.0/deals")
+    fetch(
+      `https://www.cheapshark.com/api/1.0/games?title=${params.search.replace(
+        "%20",
+        ""
+      )}`
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log(data); // handle the fetched data here
-        setDeals(data);
+        setData(data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
   }, []);
-
   return (
     <div className="bg-black">
       <div className="flex justify-center items-center flex-wrap gap-4 my-7 lg:mx-20">
-        {deals.map((deal, index) => (
+        {data.map((deal, index) => (
           <Card
             className=""
             key={index}
-            title={deal.title}
-            salePrice={deal.salePrice}
+            title={deal.external}
+            salePrice={deal.cheapest}
             imgURL={deal.thumb}
-            normalPrice={deal.normalPrice}
-            rating={deal.steamRatingText}
             gameID={deal.gameID}
           />
         ))}
       </div>
     </div>
   );
-}
+};
+
+export default page;

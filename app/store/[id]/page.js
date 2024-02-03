@@ -1,14 +1,15 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import Card from "./Components/GameCard";
+import React, { useEffect, useState } from "react";
+import Card from "@/app/Components/GameCard";
 
-export default function Home() {
+const Page = ({ params }) => {
   const [deals, setDeals] = useState([]);
 
   useEffect(() => {
-    fetch("https://www.cheapshark.com/api/1.0/deals")
+    fetch(
+      `https://www.cheapshark.com/api/1.0/deals?storeID=${params.id}&upperPrice=15`
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log(data); // handle the fetched data here
@@ -37,4 +38,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default Page;
