@@ -101,11 +101,6 @@ const Navbar = () => {
             className="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Search..."
             onChange={(e) => setSearchData(e.target.value)}
-            onClickCapture={(e) => {
-              if (e.enterKey === 13) {
-                console.log("Enter key pressed");
-              }
-            }}
           />
         </div>
         <div onClick={toggleMenu} className="md:hidden cursor-pointer pl-24">
@@ -119,7 +114,10 @@ const Navbar = () => {
         id="navbar-search"
       >
         <div className="relative mt-3 md:hidden mx-4">
-          <button className="absolute inset-y-0 start-0 flex items-center ps-3">
+          <Link
+            href={`/${searchData}`}
+            className="absolute inset-y-0 start-0 flex items-center ps-3"
+          >
             <svg
               className="w-4 h-4 text-gray-500 dark:text-gray-400"
               aria-hidden="true"
@@ -135,7 +133,7 @@ const Navbar = () => {
                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
               />
             </svg>
-          </button>
+          </Link>
           <input
             type="text"
             id="search-navbar"
