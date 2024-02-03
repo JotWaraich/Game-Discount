@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Card from "../../components/DetailsCard";
+import Card from "../../Components/DetailsCard";
 
 const Page = ({ params }) => {
   const [deals, setDeals] = useState([]);
