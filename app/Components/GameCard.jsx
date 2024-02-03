@@ -1,12 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 const Card = ({ title, salePrice, imgURL, normalPrice, gameID, storeId }) => {
   return (
     <div className="w-80 max-h-[430px] flex flex-col  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <a href="#">
-        <Image
+        <img
           className=" rounded-t-lg w-80 h-52"
           src={imgURL}
           alt="product image"

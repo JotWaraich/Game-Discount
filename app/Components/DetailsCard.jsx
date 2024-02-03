@@ -1,12 +1,10 @@
 import React from "react";
-import Link from "next/link";
-import Image from "next/image";
 
 const DetailsCard = ({ title, salePrice, normalPrice, storeId, imgURL }) => {
   return (
     <div className="w-80 max-h-72 flex flex-col  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <a href="#">
-        <Image
+        <img
           className="rounded-t-lg w-80 h-36"
           src={`https://www.cheapshark.com${imgURL}`}
           alt="store Banner"
