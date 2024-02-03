@@ -42,7 +42,7 @@ const Page = ({ params }) => {
       <div className="flex justify-center items-center flex-wrap gap-4 my-7 lg:mx-20">
         {deals.deals &&
           deals.deals.map((deal, index) => (
-            <div>
+            <div key={index}>
               {store.map((store) => {
                 if (store.storeID === deal.storeID) {
                   storen = store.storeName;
