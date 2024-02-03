@@ -6,33 +6,51 @@ import Card from "./Components/GameCard";
 
 export default function Home() {
   const [deals, setDeals] = useState([]);
+  const [store, setStore] = useState([]);
 
   useEffect(() => {
     fetch("https://www.cheapshark.com/api/1.0/deals")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data); // handle the fetched data here
         setDeals(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+
+    fetch("https://www.cheapshark.com/api/1.0/stores")
+      .then((response) => response.json())
+      .then((data) => {
+        setStore(data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
   }, []);
 
+  var storen = "";
+
   return (
     <div className="bg-black">
       <div className="flex justify-center items-center flex-wrap gap-4 my-7 lg:mx-20">
         {deals.map((deal, index) => (
-          <Card
-            className=""
-            key={index}
-            title={deal.title}
-            salePrice={deal.salePrice}
-            imgURL={deal.thumb}
-            normalPrice={deal.normalPrice}
-            rating={deal.steamRatingText}
-            gameID={deal.gameID}
-          />
+          <div>
+            {store.map((store) => {
+              if (store.storeID === deal.storeID) {
+                storen = store.storeName;
+              }
+            })}
+            <Card
+              className=""
+              key={index}
+              title={deal.title}
+              salePrice={deal.salePrice}
+              imgURL={deal.thumb}
+              normalPrice={deal.normalPrice}
+              gameID={deal.gameID}
+              storeId={storen}
+            />
+          </div>
         ))}
       </div>
     </div>

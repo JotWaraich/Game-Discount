@@ -11,7 +11,6 @@ export default function Page() {
     fetch("https://www.cheapshark.com/api/1.0/stores")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data); // handle the fetched data here
         setDeals(data);
       })
       .catch((error) => {

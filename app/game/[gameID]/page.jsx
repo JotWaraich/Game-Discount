@@ -1,50 +1,68 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../../Components/DetailsCard";
 
-const Page = ({ params }) => {
+const page = ({ params }) => {
   const [deals, setDeals] = useState([]);
+  const [store, setStore] = useState([]);
 
   useEffect(() => {
-    console.log(params.gameID);
     fetch(`https://www.cheapshark.com/api/1.0/games?id=${params.gameID}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data); // handle the fetched data here
         setDeals(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+
+    fetch("https://www.cheapshark.com/api/1.0/stores")
+      .then((response) => response.json())
+      .then((data) => {
+        setStore(data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
   }, []);
 
+  var storen = "";
+  var storeimg = "";
+
   return (
     <div className="bg-black">
-      <div className=" w-full justify-center flex flex-col items-center">
+      <div>
         <img
-          src={`${deals.info.thumb}`}
-          alt="game banner"
-          className="h-80 w-full px-10"
+          src={`${deals.info && deals.info.thumb}`}
+          alt=""
+          className="w-full h-96"
         />
-        <h1 className="text-5xl">{deals.info.title}</h1>
       </div>
       <div className="flex justify-center items-center flex-wrap gap-4 my-7 lg:mx-20">
-        {deals.deals.map((deal, index) => (
-          <Card
-            className=""
-            key={index}
-            title={deal.title}
-            salePrice={deal.salePrice}
-            imgURL={deal.thumb}
-            normalPrice={deal.normalPrice}
-            rating={deal.steamRatingText}
-            gameID={deal.gameID}
-          />
-        ))}
+        {deals.deals &&
+          deals.deals.map((deal, index) => (
+            <div>
+              {store.map((store) => {
+                if (store.storeID === deal.storeID) {
+                  storen = store.storeName;
+                  storeimg = store.images.banner;
+                }
+              })}
+              <Card
+                className=""
+                key={index}
+                title={storen}
+                salePrice={deal.price}
+                imgURL={storeimg}
+                normalPrice={deal.retailPrice}
+                gameID={deal.gameID}
+              />
+            </div>
+          ))}
       </div>
     </div>
   );
 };
 
-export default Page;
+export default page;

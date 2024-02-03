@@ -13,7 +13,7 @@ const StoreCard = ({ title, imgURL, storeID }) => {
       </a>
       <div className="px-5 pb-5 mt-3 flex flex-col">
         <a href="#">
-          <h5 className="min-h-14 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+          <h5 className="min-h-14 text-xl font-semibold tracking-tight text-gray-900 dark:text-white flex justify-center">
             {title}
           </h5>
         </a>

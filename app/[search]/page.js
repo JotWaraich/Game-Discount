@@ -14,7 +14,6 @@ const page = ({ params }) => {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data); // handle the fetched data here
         setData(data);
       })
       .catch((error) => {
